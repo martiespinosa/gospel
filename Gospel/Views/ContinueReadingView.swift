@@ -31,7 +31,6 @@ struct ContinueReadingView: View {
                         .foregroundStyle(.secondary)
                     
                     Text(getVerseText())
-                        .lineLimit(2)
                 }
                 .font(.caption)
                 
@@ -50,21 +49,9 @@ struct ContinueReadingView: View {
         let verses = BibleDataService.shared.loadBook(currentBook)?.verses.filter { $0.chapter == currentChapter && $0.verse == currentVerse } ?? []
         
         if let verse = verses.first {
-            let text = verse.text
-            // Truncar a una línea aproximada (unos 80 caracteres) y añadir puntos suspensivos
-            if text.count > 80 {
-                let truncated = String(text.prefix(80))
-                // Buscar el último espacio para no cortar palabras
-                if let lastSpace = truncated.lastIndex(of: " ") {
-                    return String(truncated[..<lastSpace]) + "..."
-                } else {
-                    return truncated + "..."
-                }
-            } else {
-                return text
-            }
+            return verse.text
         } else {
-            return "Tap to continue reading \(currentBook)..."
+            return "Tap to continue reading \(currentBook)"
         }
     }
 }

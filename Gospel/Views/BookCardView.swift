@@ -13,7 +13,7 @@ struct BookCardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12)
-                .fill(BibleBook(rawValue: book.name)?.color.opacity(0.3) ?? Color.gray.opacity(0.3))
+                .fill(BibleBook(rawValue: book.name)?.color.secondary ?? Color.gray.secondary)
             
             VStack(alignment: .leading, spacing: 8) {
                 Spacer()
